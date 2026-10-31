@@ -1,0 +1,110 @@
+{
+  "command": [
+    "docker",
+    "compose",
+    "-p",
+    "twinguard-platform",
+    "-f",
+    "deployment/compose.yaml",
+    "-f",
+    "deployment/edge/compose.demo-ux.yaml",
+    "-f",
+    "deployment/edge/compose.demo-review-test.yaml",
+    "config",
+    "--no-env-resolution",
+    "--no-interpolate",
+    "--format",
+    "json"
+  ],
+  "validation": "syntax/interpolation-free check only; credentials not provisioned; services not launched",
+  "services": {
+    "api": {
+      "image": "twinguard-platform-api:local",
+      "ports": []
+    },
+    "broker": {
+      "image": "eclipse-mosquitto:2",
+      "ports": [
+        {
+          "host_ip": "127.0.0.1",
+          "mode": "ingress",
+          "protocol": "tcp",
+          "published": "19483",
+          "target": 1883
+        }
+      ]
+    },
+    "database": {
+      "image": "postgres:17-alpine",
+      "ports": [
+        {
+          "host_ip": "127.0.0.1",
+          "mode": "ingress",
+          "protocol": "tcp",
+          "published": "19482",
+          "target": 5432
+        }
+      ]
+    },
+    "fast-worker": {
+      "image": "twinguard-platform-api:local",
+      "ports": []
+    },
+    "frontend": {
+      "image": "twinguard-platform-frontend:local",
+      "ports": [
+        {
+          "host_ip": "127.0.0.1",
+          "mode": "ingress",
+          "protocol": "tcp",
+          "published": "19480",
+          "target": 8080
+        }
+      ]
+    },
+    "ingestion": {
+      "image": "twinguard-platform-api:local",
+      "ports": []
+    },
+    "inspection-worker": {
+      "image": "twinguard-platform-worker:local",
+      "ports": []
+    },
+    "migrate": {
+      "image": "twinguard-platform-api:local",
+      "ports": []
+    },
+    "opcua-adapter": {
+      "image": "twinguard-edge-api:local",
+      "ports": []
+    },
+    "opcua-simulator": {
+      "image": "twinguard-edge-api:local",
+      "ports": []
+    },
+    "planning-worker": {
+      "image": "twinguard-platform-worker:local",
+      "ports": []
+    },
+    "simulation-controller": {
+      "image": "twinguard-platform-simulation:local",
+      "ports": []
+    },
+    "site-review-api": {
+      "image": "twinguard-platform-api:local",
+      "ports": []
+    },
+    "site-review-frontend": {
+      "image": "twinguard-platform-frontend:local",
+      "ports": [
+        {
+          "host_ip": "127.0.0.1",
+          "mode": "ingress",
+          "protocol": "tcp",
+          "published": "19490",
+          "target": 8080
+        }
+      ]
+    }
+  }
+}

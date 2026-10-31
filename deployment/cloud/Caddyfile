@@ -1,0 +1,9 @@
+{
+	email {$TWINGUARD_ACME_EMAIL}
+}
+{$TWINGUARD_DOMAIN} {
+	encode gzip
+	reverse_proxy frontend:8080 {
+		flush_interval -1
+	}
+}

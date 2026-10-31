@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "E1",
+  "version": "v2",
+  "inputs": [
+    "reference cloud",
+    "current cloud",
+    "acquisition metadata",
+    "registration configuration"
+  ],
+  "outputs": [
+    "registered cloud",
+    "change map",
+    "detection regions",
+    "displacement estimates",
+    "registration quality",
+    "runtime"
+  ],
+  "planned_metrics": [
+    "displacement error",
+    "precision",
+    "recall",
+    "false-positive rate",
+    "localization error",
+    "runtime"
+  ],
+  "baseline": "Observed-data baseline and proposed comparison; see docs/EXPERIMENTS.md",
+  "implementation_status": "implemented",
+  "benchmark_reference": "configs/experiments/E1.yaml"
+}

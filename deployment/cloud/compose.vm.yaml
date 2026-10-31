@@ -1,0 +1,25 @@
+# Use after compose.yaml and edge/compose.demo-ux.yaml; expose HTTPS only.
+services:
+  database:
+    ports: !reset []
+  broker:
+    ports: !reset []
+  frontend:
+    ports: !reset []
+  gateway:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      TWINGUARD_DOMAIN: ${TWINGUARD_DOMAIN:?Set TWINGUARD_DOMAIN to your DNS hostname}
+      TWINGUARD_ACME_EMAIL: ${TWINGUARD_ACME_EMAIL:?Set TWINGUARD_ACME_EMAIL}
+    ports: ['80:80', '443:443']
+    volumes:
+      - ./cloud/Caddyfile:/etc/caddy/Caddyfile:ro
+      - gateway-data:/data
+      - gateway-config:/config
+    networks: [edge, access]
+    mem_limit: 256m
+    depends_on: [frontend]
+volumes:
+  gateway-data:
+  gateway-config:

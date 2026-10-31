@@ -1,0 +1,17 @@
+{
+  "credential_value_matches": [],
+  "broken_markdown_links": [],
+  "source_config_scenario_experiment_files_checked": 183,
+  "source_changes": [],
+  "original_worktrees_clean": {
+    "/home/mallikarjun/workspace/TwinGuard": true,
+    "/home/mallikarjun/workspace/TwinGuard-demo-ux": true
+  },
+  "phase_named_documentation_files": [],
+  "generated_output_in_index": [],
+  "local_commits": 0,
+  "commit_push_status": "not performed; awaiting owner confirmation",
+  "reviewable_files": 464,
+  "standalone_git_directory": true,
+  "inherited_commit_object_present": false
+}

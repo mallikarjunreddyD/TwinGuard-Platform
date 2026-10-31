@@ -1,0 +1,12 @@
+{
+  "checks": {
+    "built_guide_served": true,
+    "guide_sections_present": true,
+    "return_to_platform": true,
+    "dashboard_bundle_links_guide": true,
+    "keyboard_focus_visible": true,
+    "mobile_no_horizontal_overflow": true
+  },
+  "page_errors": [],
+  "status": "passed"
+}

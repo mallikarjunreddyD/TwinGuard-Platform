@@ -1,0 +1,2 @@
+# Preserve exact scientific CSV fixture bytes and accept their original CRLF records.
+*.csv -text whitespace=cr-at-eol

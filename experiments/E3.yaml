@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "experiment_id": "E3",
+  "version": "v2",
+  "inputs": [
+    "fixed observations",
+    "geometric detections",
+    "thermal evidence",
+    "operating context",
+    "validity metadata"
+  ],
+  "outputs": [
+    "assessments",
+    "supporting evidence",
+    "actions",
+    "confidence quality"
+  ],
+  "planned_metrics": [
+    "critical-event detection",
+    "missed-event rate",
+    "false escalations",
+    "stale and missing evidence handling",
+    "decision latency"
+  ],
+  "baseline": "F0 two-signal agreement versus F1 hazard-aware temporal evidence",
+  "implementation_status": "implemented",
+  "benchmark_reference": "configs/experiments/E3.yaml"
+}

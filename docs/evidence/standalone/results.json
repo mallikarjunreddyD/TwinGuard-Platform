@@ -1,0 +1,53 @@
+{
+  "validated_at_utc": "2026-10-31T04:27:46.930628+00:00",
+  "validated_at_india": "2026-10-31T09:57:46.930737+05:30",
+  "worktree": "/home/mallikarjun/workspace/TwinGuard-Platform",
+  "python_dependency_environment": "Existing Python 3.12 venv reused; PYTHONPATH and TWINGUARD_ROOT explicitly select this standalone copy",
+  "frontend_dependency_environment": "Existing node_modules mounted read-only into Node 22 Docker container; build outputs created only in this copy",
+  "results": {
+    "pytest": {
+      "passed": 362,
+      "warnings": 1,
+      "duration_s": 584.22,
+      "exit_code": 0
+    },
+    "frontend": {
+      "tests_passed": 3,
+      "production_build": "passed",
+      "exit_code": 0,
+      "warning": "Vite bundle exceeds 500 kB"
+    },
+    "ruff": {
+      "status": "passed",
+      "exit_code": 0
+    },
+    "format": {
+      "files": 204,
+      "status": "passed",
+      "exit_code": 0
+    },
+    "mypy": {
+      "files": 118,
+      "status": "passed",
+      "exit_code": 0,
+      "record_source": "Observed tool output: Success: no issues found in 118 source files"
+    },
+    "compose": {
+      "status": "passed",
+      "scope": "Syntax and isolated image/port configuration, without credentials or launching services"
+    },
+    "cli_doctor": {
+      "status": "passed",
+      "exit_code": 0
+    }
+  },
+  "not_executed": [
+    "New deployment startup",
+    "Fresh live browser/MQTT scenarios",
+    "Full scientific benchmark campaigns",
+    "Clean dependency reinstall",
+    "Git commit",
+    "Git push"
+  ],
+  "publication_status": "Awaiting explicit owner confirmation; zero local commits"
+}

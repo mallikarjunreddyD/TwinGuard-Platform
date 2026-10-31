@@ -1,0 +1,125 @@
+from twinguard.inspection import contracts as planning_contracts
+from twinguard.edge.contracts import Envelope, SourceRegistration
+from pathlib import Path
+import json
+from twinguard.fusion import models as fusion_models
+from twinguard.core import contracts
+from twinguard.evaluation.contracts import (
+    FaultInjection,
+    ExperimentDefinition,
+    ExperimentRun,
+    GroundTruthSnapshot,
+    ExperimentBenchmark,
+    FusionBenchmark,
+)
+from twinguard.plant.config import PlantConfig
+from twinguard.plant.contracts import SimulationManifest
+
+from twinguard.core.observations import ObservationManifest
+from twinguard.sensing.config import AcquisitionConfig
+
+from twinguard.core import analytics_contracts
+from twinguard.analytics.config import AnalyticsConfig
+
+PUBLIC_MODELS = {
+    name: getattr(contracts, name)
+    for name in (
+        "SensorConfiguration",
+        "Artifact",
+        "Asset",
+        "PlantState",
+        "SensorObservation",
+        "InspectionCapture",
+        "GeometricDetection",
+        "EvidenceRecord",
+        "ConditionAssessment",
+        "DatasetProvenance",
+    )
+}
+PUBLIC_MODELS["ObservationManifest"] = ObservationManifest
+PUBLIC_MODELS.update(
+    {
+        name: getattr(analytics_contracts, name)
+        for name in (
+            "RegistrationResult",
+            "PatchEstimate",
+            "GeometryRegion",
+            "GeometryResult",
+            "OperatingPrediction",
+            "ThermalRegion",
+            "ThermalResult",
+        )
+    }
+)
+
+PUBLIC_MODELS.update(
+    {
+        name: getattr(fusion_models, name)
+        for name in (
+            "ProcessingRecord",
+            "FusionEvidenceManifest",
+            "FusionEvidence",
+            "TemporalDecision",
+            "CompatibilityDecision",
+            "AdvisoryEvent",
+            "AdvisoryNotice",
+            "DecisionTrace",
+            "FusionState",
+            "OperatorAction",
+        )
+    }
+)
+
+
+PUBLIC_MODELS.update({"EdgeEnvelope": Envelope, "SourceRegistration": SourceRegistration})
+
+
+PUBLIC_MODELS.update(
+    {
+        name: getattr(planning_contracts, name)
+        for name in (
+            "BaselineInspectionSupport",
+            "InspectionPlanningRequest",
+            "PlanningSnapshot",
+            "AssetInspectionPriority",
+            "SurfaceCoverageEstimate",
+            "CandidateViewpoint",
+            "ViewpointFeasibility",
+            "ViewpointUtility",
+            "InspectionPlan",
+            "InspectionPlanStep",
+            "PlanningExplanation",
+            "ReinspectionRecommendation",
+            "PlanningEvaluationRecord",
+        )
+    }
+)
+
+CONFIG_MODELS = {
+    "PlanningConfig": planning_contracts.PlanningConfig,
+    "FusionPolicy": fusion_models.FusionPolicy,
+    "HazardRule": fusion_models.HazardRule,
+    "SensorAuthority": fusion_models.SensorAuthority,
+    "MonitoringRequirement": fusion_models.MonitoringRequirement,
+    "FusionBenchmark": FusionBenchmark,
+    "AnalyticsConfig": AnalyticsConfig,
+    "ExperimentBenchmark": ExperimentBenchmark,
+    "AcquisitionConfig": AcquisitionConfig,
+    "PlantConfig": PlantConfig,
+    "SimulationManifest": SimulationManifest,
+    "ScenarioDefinition": contracts.ScenarioDefinition,
+    "ExperimentDefinition": ExperimentDefinition,
+    "ExperimentRun": ExperimentRun,
+}
+RESTRICTED_MODELS = {"FaultInjection": FaultInjection, "GroundTruthSnapshot": GroundTruthSnapshot}
+ALL_MODELS = PUBLIC_MODELS | CONFIG_MODELS | RESTRICTED_MODELS
+
+
+def export_schemas(destination: Path):
+    destination.mkdir(parents=True, exist_ok=True)
+    for name, model in ALL_MODELS.items():
+        directory = destination / "restricted" if name in RESTRICTED_MODELS else destination
+        directory.mkdir(exist_ok=True)
+        (directory / f"{name}.schema.json").write_text(
+            json.dumps(model.model_json_schema(), indent=2) + "\n"
+        )

@@ -1,0 +1,42 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+build/
+dist/
+.env
+experiments/outputs/
+datasets/**/*.npy
+datasets/**/*.pcd
+datasets/**/*.las
+.env.*
+!.env.example
+.aws/
+.secrets/
+*.pem
+*.key
+datasets/**/generated/
+datasets/ground_truth/*.json
+datasets/**/*.ply
+datasets/**/*.bag
+datasets/**/*.zip
+
+.edge/
+frontend/node_modules/
+frontend/dist/
+output/phase5*/
+frontend/*.tsbuildinfo
+
+# Versioned raw research archives remain outside Git.
+experiments/releases/
+
+# Managed simulation datasets and local runtime state.
+.demo-data/
+
+# Generated local application and research artifacts are never source.
+/output/
+/docs/evidence/local/
+/validation/local/

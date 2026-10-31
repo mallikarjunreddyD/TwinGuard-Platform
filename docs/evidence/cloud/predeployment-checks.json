@@ -1,0 +1,41 @@
+{
+  "checked_at_utc": "2026-10-31T04:47:18.364991+00:00",
+  "frontend": {
+    "tests": 3,
+    "build": "passed",
+    "guide_path": "/user-guide.html"
+  },
+  "user_guide_browser": {
+    "checks": {
+      "built_guide_served": true,
+      "guide_sections_present": true,
+      "return_to_platform": true,
+      "dashboard_bundle_links_guide": true,
+      "keyboard_focus_visible": true,
+      "mobile_no_horizontal_overflow": true
+    },
+    "page_errors": [],
+    "status": "passed"
+  },
+  "cloud_vm_config": {
+    "compose": "passed",
+    "caddy": "passed",
+    "public_ports": [
+      80,
+      443
+    ],
+    "database_broker_frontend_host_ports": []
+  },
+  "oracle_target": {
+    "shape": "VM.Standard.A1.Flex",
+    "documented_always_free_ocpus": 2,
+    "documented_always_free_ram_gb": 12,
+    "account_access": "pending owner signup",
+    "native_arm_runtime_validation": "not executed",
+    "open3d_0_19_linux_arm64_wheels_in_pypi_listing": []
+  },
+  "live_deployment": false,
+  "public_application_url": null,
+  "provider_resources_created": false,
+  "scientific_changes": false
+}
